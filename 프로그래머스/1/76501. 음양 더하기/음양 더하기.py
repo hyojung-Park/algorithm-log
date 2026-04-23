@@ -1,9 +1,8 @@
 def solution(absolutes, signs):
-    ans = 0
-    for i in range(len(absolutes)):
-        if signs[i]:
-            ans += absolutes[i]
+    answer=0
+    for absolute,sign in zip(absolutes,signs):
+        if sign:
+            answer+=absolute
         else:
-            ans -= absolutes[i]
-    
-    return ans
+            answer-=absolute
+    return answer
