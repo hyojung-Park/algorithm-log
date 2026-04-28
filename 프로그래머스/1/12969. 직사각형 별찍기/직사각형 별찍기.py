@@ -1,3 +1,3 @@
 a, b = map(int, input().strip().split(' '))
-for i in range(1, b+1):
+for _ in range(b):
     print('*' * a)
