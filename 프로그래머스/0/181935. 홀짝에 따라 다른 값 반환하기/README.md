@@ -1,10 +1,10 @@
 # [level 0] 홀짝에 따라 다른 값 반환하기 - 181935 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181935) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181935?language=java) 
 
 ### 성능 요약
 
-메모리: 9.03 MB, 시간: 0.02 ms
+메모리: 80.7 MB, 시간: 0.02 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2026년 04월 25일 08:57:32
+2026년 05월 01일 18:07:17
 
 ### 문제 설명
 
