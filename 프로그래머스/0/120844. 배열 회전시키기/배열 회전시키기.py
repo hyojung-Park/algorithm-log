@@ -4,10 +4,8 @@ def solution(numbers, direction):
     dq = deque(numbers)
     
     if direction == 'right':
-        n = dq.pop()
-        dq.appendleft(n)
+        dq.rotate(1)
     else:
-        n = dq.popleft()
-        dq.append(n)
+        dq.rotate(-1)
     
     return list(dq)
