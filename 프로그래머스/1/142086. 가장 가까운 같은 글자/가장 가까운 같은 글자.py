@@ -1,17 +1,15 @@
 def solution(s):
-    answer = [-1]
-    
-    # 1. 앞에서부터 한 문자씩 확인
-    for i in range(1, len(s)):
-        flag = -1
-        # 2. 자신의 바로 앞 인덱스부터 앞으로 가면서 확인
-        for j in range(i-1, -1, -1):
-            if s[i] == s[j]:
-                flag = i-j
-                break
-        if flag != -1:
-            answer.append(i-j)
+    answer = []
+    # 딕셔너리에 문자 : 인덱스 를 저장하자.
+    last_idx = {}
+    for i in range(len(s)):
+        ch = s[i]
+        # 앞에서 나온 문자라면
+        if ch in last_idx: 
+            answer.append(i-last_idx[ch])
+        # 나온 적 없는 문자라면
         else:
             answer.append(-1)
-        
+        last_idx[ch] = i
+            
     return answer
