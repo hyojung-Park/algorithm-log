@@ -1,12 +1,14 @@
 def solution(food):
     '''
-    음식개수 // 2 만큼 인덱스를 붙이고, 마지막 인덱스까지 끝나면 0 을 붙인 뒤, 앞을 뒤집은 문자열을 붙임
+    음식개수 // 2 만큼 인덱스를 붙이고, 
+    마지막 인덱스까지 끝나면 0 을 붙인 뒤, 앞을 뒤집은 문자열을 붙임
     '''
-    left = ''
+    left = []
     
     for i in range(1, len(food)):
-        left += (food[i] // 2) * str(i)
+        left.append(str(i) * (food[i] // 2))
     
-    answer = left + '0' + left[::-1]
+    left = ''.join(left)
     
-    return answer
+    # left = ''.join(str(i) * (food[i] // 2) for i in range(1, len(food)))
+    return left + '0' + left[::-1]
