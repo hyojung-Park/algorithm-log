@@ -2,14 +2,15 @@ from collections import deque
 
 def solution(m, n, h, w, drops):
     INF = len(drops) + 1
-
+    
+    # 각 칸에 비가 내리는 시간 저장
     rain = [[INF] * n for _ in range(m)]
 
     for time, (r, c) in enumerate(drops, start=1):
         rain[r][c] = time
 
-    # 1. 각 행마다 가로 w칸 최솟값
-    # 각 행마다 n-w+1개의 최솟값이 나옴
+    # row_min[r][c]
+    # = rain[r][c] ~ rain[r][c+w-1] 중 최솟값
     row_min = [[0] * (n - w + 1) for _ in range(m)]
 
     for r in range(m):
@@ -34,11 +35,10 @@ def solution(m, n, h, w, drops):
                 # 그 위치에 현재 창문의 최솟값을 기록
                 row_min[r][c - w + 1] = rain[r][dq[0]]
 
-    # 2. 세로 h칸 최솟값
-    # (r,c)를 좌상단으로 하는 h*w 직사각형의 최솟값을 저장
-    area_min = [[0] * (n - w + 1) for _ in range(m - h + 1)]
+    best_time = -1
+    answer = (0, 0)
 
-    # 열을 돌면서 (n-w+1)까지 확인 
+    # row_min을 세로 방향으로 h칸씩 보면서 최솟값 계산
     for c in range(n - w + 1):
         # 현재 열에서 최솟값 후보의 행 번호 저장
         dq = deque()
@@ -60,17 +60,14 @@ def solution(m, n, h, w, drops):
             if r >= h - 1:
                 # 가장 위 좌표: r - h + 1
                 top = r - h + 1
-                # 현재 세로 창문의 최솟값을 저장
-                area_min[top][c] = row_min[dq[0]][c]
+                
+                # 현재 h x w 구역의 최솟값
+                current_time = row_min[dq[0]][c]
+                
+                # 더 늦게 비를 맞거나, 같은 시간이면 더 위쪽/왼쪽 좌표 선택
+                if current_time > best_time or (
+                    current_time == best_time and (top, c) < answer):
+                    best_time = current_time
+                    answer = (top, c)
 
-    # 3. 행 우선 순회로 정답 선택
-    best_time = 0
-    answer = [0, 0]
-
-    for r in range(m - h + 1):
-        for c in range(n - w + 1):
-            if area_min[r][c] > best_time:
-                best_time = area_min[r][c]
-                answer = [r, c]
-
-    return answer                                                           
+    return list(answer)                                                           
