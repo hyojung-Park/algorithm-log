@@ -1,5 +1,5 @@
+from collections import deque
 def solution(n, edge):
-    e = len(edge)
     graph = [[] for _ in range(n+1)]
     
     for a, b in edge:
@@ -8,10 +8,10 @@ def solution(n, edge):
     
     visited = [0] * (n+1)
     visited[1] = 1
-    q = [1]
+    q = deque([1])
     
     while q:
-        t = q.pop(0)
+        t = q.popleft()
         
         for w in graph[t]:
             if visited[w] == 0:
