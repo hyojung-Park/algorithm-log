@@ -28,6 +28,10 @@ def solution(numbers):
     
     numbers.sort(key=cmp_to_key(compare))
     
+    # 문자열을 4번 반복한 값을 기준으로 내립차순 정렬
+    # numbers.sort(key=lambda x: x * 4, reverse = True)
+    
+    
     answer = ''.join(numbers)
     
     if answer[0] == '0':
