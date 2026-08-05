@@ -1,9 +1,11 @@
 def solution(k, tangerine):
     counts = {}
     
+    # tangerine을 돌면서 해당 숫자가 있다면 개수 추가하고, 없다면 key 새로 생성 
     for t in tangerine:
         counts[t] = counts.get(t, 0) + 1
     
+    # 개수 많은 순서대로 정렬 
     li = sorted(counts.values(), reverse = True)
     
     cnt = 0 # 담은 귤의 수
